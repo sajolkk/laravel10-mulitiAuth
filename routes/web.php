@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +36,8 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 require __DIR__.'/adminAuth.php';
+
+
+// social login
+Route::get('auth/google',[SocialiteController::class,'googleLogin'])->name('auth.google');
+Route::get('auth/google/call-back',[SocialiteController::class,'googleCallBack'])->name('auth.google.call-back');
